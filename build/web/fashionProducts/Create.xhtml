@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFashionProductsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_id}" for="Id" />
+                    <h:inputText id="id" value="#{fashionProductsController.selected.id}" title="#{bundle.CreateFashionProductsTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_name}" for="Name" />
+                    <h:inputText id="name" value="#{fashionProductsController.selected.name}" title="#{bundle.CreateFashionProductsTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_description}" for="Description" />
+                    <h:inputText id="description" value="#{fashionProductsController.selected.description}" title="#{bundle.CreateFashionProductsTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_price}" for="Price" />
+                    <h:inputText id="price" value="#{fashionProductsController.selected.price}" title="#{bundle.CreateFashionProductsTitle_price}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_category}" for="Category" />
+                    <h:inputText id="category" value="#{fashionProductsController.selected.category}" title="#{bundle.CreateFashionProductsTitle_category}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_stock}" for="Stock" />
+                    <h:inputText id="stock" value="#{fashionProductsController.selected.stock}" title="#{bundle.CreateFashionProductsTitle_stock}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_size}" for="Size" />
+                    <h:inputText id="size" value="#{fashionProductsController.selected.size}" title="#{bundle.CreateFashionProductsTitle_size}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_color}" for="Color" />
+                    <h:inputText id="color" value="#{fashionProductsController.selected.color}" title="#{bundle.CreateFashionProductsTitle_color}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_brand}" for="Brand" />
+                    <h:inputText id="brand" value="#{fashionProductsController.selected.brand}" title="#{bundle.CreateFashionProductsTitle_brand}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_date_added}" for="Date_added" />
+                    <h:inputText id="date_added" value="#{fashionProductsController.selected.date_added}" title="#{bundle.CreateFashionProductsTitle_date_added}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_last_modified}" for="last_modified" />
+                    <h:inputText id="last_modified" value="#{fashionProductsController.selected.last_modified}" title="#{bundle.CreateFashionProductsTitle_last_modified}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_is_available}" for="Availibilty Status" />
+                    <h:inputText id="is_available" value="#{fashionProductsController.selected.is_available}" title="#{bundle.CreateFashionProductsTitle_is_available}" />
+                    <h:outputLabel value="#{bundle.CreateFashionProductsLabel_rating}" for="Rating" />
+                    <h:inputText id="rating" value="#{fashionProductsController.selected.rating}" title="#{bundle.CreateFashionProductsTitle_rating}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fashionProductsController.create}" value="#{bundle.CreateFashionProductsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{fashionProductsController.prepareList}" value="#{bundle.CreateFashionProductsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFashionProductsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

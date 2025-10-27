@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WomenFashion Shopping Cart</title>
+    <style>
+        body {margin: 0; font-family: Arial, sans-serif; }
+        .navbar {background-color: #b37474; text-align: center; padding: 10px 0;}
+        .navbar-title { font-size: 28px; color: white; font-weight: bold; margin-bottom: 5px; }
+        .navbar-links { text-align: center;  margin-top: 5px;}
+        .navbar-links a { font-size: 14px; color: white;  text-decoration: none; padding: 5px 10px;
+            display: inline-block;}
+        .navbar-links a:hover { background-color: #C71585;}
+        .hero { position: relative; background: url('images/fashionBg.jpg') center/cover no-repeat;
+            height: 80vh; display: flex; justify-content: center; align-items: center; text-align: center;
+            color: white;}
+        .hero::before { content: ""; position: absolute; top: 0; left: 0;width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);}
+        .hero-content {position: relative;  z-index: 2; }
+        .hero h1 { font-size: 3rem;font-weight: bold;margin-bottom: 10px;}
+        .hero p {font-size: 1.2rem; }
+        #products { padding: 40px; background-color: #f1dff0; display: none;}
+        table { border-collapse: collapse; width: 100%;background-color: white;  }
+        th, td { border: 1px solid #b37474;  padding: 10px;text-align: left; }
+        th {  background-color: #b37474;color: white;  }
+        tr:nth-child(even) { background-color: #f1dff0;   }
+        .footer { background-color: #b37474;  color: white;  padding: 15px 20px;
+            display: flex;  justify-content: space-between;  align-items: center;
+            font-size: 14px; }
+        .footer .center {  text-align: center; flex: 1;  }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-title">WomenFashion Shopping Cart</div>
+        <div class="navbar-links">
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#" onclick="showProducts()">Our Products</a>
+        </div>
+    </div>
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Fashion Cart</h1>
+            <p>Step into style because you deserve to be shine every day!</p>
+        </div>
+    </div>
+
+    <div id="products">
+        <h2 style="color:#b37474;">Our Latest Collection</h2>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Stock</th>
+                    <th>Size</th>
+                    <th>Color</th>
+                    <th>Brand</th>
+                    <th>Date Added</th>
+                    <th>Last Modified</th>
+                    <th>Available</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <div>Address: Pune,India | Email: jagruti@example.com</div>
+        <div class="center">&copy; Copyright Made by Jagruti 9111</div>
+        <div>Contact Us: +91-9876543210</div>
+    </div>
+
+    <script>
+        function showHome() {
+            document.getElementById("home").style.display = "flex";
+            document.getElementById("products").style.display = "none";
+        }
+
+        function showProducts() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("products").style.display = "block"; 
+    fetchProducts();
+}
+
+        function fetchProducts() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "http://localhost:8080/WomenFashion11/webresources/com.fashion.womenfashionproduct", true);
+
+            request.onload = function() {
+                if (this.status >= 200 && this.status < 400) {
+                    var data = JSON.parse(this.response);
+                    var tableBody = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+                    tableBody.innerHTML = "";
+
+                    data.forEach(function(item) {
+                        var row = tableBody.insertRow();
+                        row.insertCell(0).innerHTML = item.id;
+                        row.insertCell(1).innerHTML = item.name;
+                        row.insertCell(2).innerHTML = item.description;
+                        row.insertCell(3).innerHTML = item.price;
+                        row.insertCell(4).innerHTML = item.category;
+                        row.insertCell(5).innerHTML = item.stock;
+                        row.insertCell(6).innerHTML = item.size;
+                        row.insertCell(7).innerHTML = item.color;
+                        row.insertCell(8).innerHTML = item.brand;
+                       row.insertCell(9).innerHTML = new Date(item.dateAdded).toLocaleDateString(); 
+                       row.insertCell(10).innerHTML = new Date(item.lastModified).toLocaleDateString();
+                        row.insertCell(11).innerHTML = item.isAvailable;
+                        row.insertCell(12).innerHTML = item.rating;
+                    });
+                } else {
+                    console.error("Error fetching data");
+                }
+            };
+
+            request.onerror = function() {
+                console.error("Connection error");
+            };
+
+            request.send();
+        }
+    </script>
+
+</body>
+</html>

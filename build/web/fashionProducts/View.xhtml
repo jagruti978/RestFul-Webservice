@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFashionProductsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_id}"/>
+                    <h:outputText value="#{fashionProductsController.selected.id}" title="#{bundle.ViewFashionProductsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_name}"/>
+                    <h:outputText value="#{fashionProductsController.selected.name}" title="#{bundle.ViewFashionProductsTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_description}"/>
+                    <h:outputText value="#{fashionProductsController.selected.description}" title="#{bundle.ViewFashionProductsTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_price}"/>
+                    <h:outputText value="#{fashionProductsController.selected.price}" title="#{bundle.ViewFashionProductsTitle_price}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_category}"/>
+                    <h:outputText value="#{fashionProductsController.selected.category}" title="#{bundle.ViewFashionProductsTitle_category}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_stock}"/>
+                    <h:outputText value="#{fashionProductsController.selected.stock}" title="#{bundle.ViewFashionProductsTitle_stock}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_size}"/>
+                    <h:outputText value="#{fashionProductsController.selected.size}" title="#{bundle.ViewFashionProductsTitle_size}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_color}"/>
+                    <h:outputText value="#{fashionProductsController.selected.color}" title="#{bundle.ViewFashionProductsTitle_color}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_brand}"/>
+                    <h:outputText value="#{fashionProductsController.selected.brand}" title="#{bundle.ViewFashionProductsTitle_brand}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_date_added}"/>
+                    <h:outputText value="#{fashionProductsController.selected.date_added}" title="#{bundle.ViewFashionProductsTitle_date_added}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_last_modified}"/>
+                    <h:outputText value="#{fashionProductsController.selected.last_modified}" title="#{bundle.ViewFashionProductsTitle_last_modified}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_is_available}"/>
+                    <h:outputText value="#{fashionProductsController.selected.is_available}" title="#{bundle.ViewFashionProductsTitle_is_available}"/>
+                    <h:outputText value="#{bundle.ViewFashionProductsLabel_rating}"/>
+                    <h:outputText value="#{fashionProductsController.selected.rating}" title="#{bundle.ViewFashionProductsTitle_rating}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fashionProductsController.destroyAndView}" value="#{bundle.ViewFashionProductsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFashionProductsEditLink}"/>
+                <br />
+                <h:commandLink action="#{fashionProductsController.prepareCreate}" value="#{bundle.ViewFashionProductsCreateLink}" />
+                <br />
+                <h:commandLink action="#{fashionProductsController.prepareList}" value="#{bundle.ViewFashionProductsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFashionProductsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
